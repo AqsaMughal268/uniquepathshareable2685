@@ -1,0 +1,95 @@
+
+/* Form section styling */
+.form-section {
+    background-color: rgb(36, 39, 192);
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(25, 10, 236, 0.1);
+}
+
+.form-section h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+/* Input field styling */
+form input, form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+/* Submit button styling */
+form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Resume section styling */
+.resume-section {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Editable field styling */
+[contenteditable="true"] {
+    padding: 5px;
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    cursor: text;
+    margin-bottom: 10px;
+    min-width: 100px;
+}
+
+[contenteditable="true"]:hover, 
+[contenteditable="true"]:focus {
+    outline: none;
+    border: 1px solid #4CAF50;
+    background-color: #eef;
+}
+
+/* Image preview styling */
+#profileImagePreview {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+}
+
+/* Paragraph styling for resume */
+.resume-section p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Label styling for the form */
+form label {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #f8f8fc;
+}

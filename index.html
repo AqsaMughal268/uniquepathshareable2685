@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Editable Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .form-section, .resume-section {
+            margin-bottom: 20px;
+        }
+
+        header {
+            text-align: center;
+            background-color:rgb(18, 18, 163);
+            color: white;
+            padding: 10px;
+        }
+
+        form input, form textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #050374;
+            border-radius: 5px;
+        }
+
+        .form-section button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .resume-section {
+            background-color: rgb(255, 255, 255);
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #profileImagePreview {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        /* Add a light background color to editable fields */
+        [contenteditable] {
+            background-color: #eef;
+            padding: 5px;
+            border: 1px dashed #ccc;
+            cursor: text;
+        }
+        .resume-section {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shareable Resume Builder</h1>
+    </header>
+
+   <!-- Add a Username Field in the Form -->
+<section class="form-section">
+    <h2>Fill Out Your Resume</h2>
+    <form id="resumeForm">
+        <!-- Username Input -->
+        <input type="text" id="username" placeholder="Your Username (for URL)" required>
+
+        <!-- Profile Image Upload -->
+        <label for="profileImage">Upload Profile Image:</label>
+        <input type="file" id="profileImage" accept="image/*" required>
+        
+        <!-- Personal Information -->
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        
+        <!-- Education -->
+        <textarea id="education" placeholder="Education (e.g., BSc in Computer Science)" required></textarea>
+        
+        <!-- Work Experience -->
+        <textarea id="workExperience" placeholder="Work Experience (e.g., Software Developer at ABC Corp)" required></textarea>
+        
+        <!-- Submit Button -->
+        <button type="submit">Generate Resume</button>
+    </form>
+</section>
+
+<!-- Shareable Link Section -->
+<section class="resume-section" id="shareableLinkSection" style="display:none;">
+    <h2>Share Your Resume</h2>
+    <p>Your unique resume link:</p>
+    <a id="shareableLink" href="#" target="_blank">View Your Resume</a>
+</section>
+
+
+    <!-- Resume Section -->
+    <section class="resume-section" id="generatedResume" style="display:none;">
+        <h2>Generated Resume</h2>
+        <!-- Profile Image -->
+        <img id="profileImagePreview" src="" alt="Profile Image">
+
+        <!-- Personal Information (Editable) -->
+        <p><strong>Name:</strong> <span id="displayName" contenteditable="true"></span></p>
+        <p><strong>Email:</strong> <span id="displayEmail" contenteditable="true"></span></p>
+
+        <!-- Education (Editable) -->
+        <p><strong>Education:</strong> <span id="displayEducation" contenteditable="true"></span></p>
+
+        <!-- Work Experience (Editable) -->
+        <p><strong>Work Experience:</strong> <span id="displayWorkExperience" contenteditable="true"></span></p>
+    </section>
+
+    <!-- Shareable Link Section -->
+<section class="resume-section" id="shareableLinkSection" style="display:none;">
+    <h2>Share Your Resume</h2>
+    <p>Your unique resume link:</p>
+    <a id="shareableLink" href="#" target="_blank">View Your Resume</a>
+</section>
+
+
+
+
+<script>
+    // Function to get query parameters from the URL
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            username: params.get('username'),
+            name: params.get('name'),
+            email: params.get('email'),
+            education: params.get('education'),
+            workExperience: params.get('workExperience'),
+        };
+    }
+
+    // Get query parameters and populate the resume
+    const { name, email, education, workExperience } = getQueryParams();
+
+    document.getElementById('displayName').textContent = name || 'N/A';
+    document.getElementById('displayEmail').textContent = email || 'N/A';
+    document.getElementById('displayEducation').textContent = education || 'N/A';
+    document.getElementById('displayWorkExperience').textContent = workExperience || 'N/A';
+</script>
+
+<!-- Add this to the resume.html page -->
+<button id="downloadResume">Download as PDF</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+document.getElementById('downloadResume').addEventListener('click', () => {
+    const element = document.getElementById('generatedResume');
+    html2pdf(element);
+});
+</script>
+
+    <!-- Include TypeScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
